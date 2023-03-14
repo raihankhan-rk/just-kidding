@@ -1,0 +1,11 @@
+{
+    "name": "just kidding",
+    "version": 2,
+    "builds": [{
+        "src": "*py",
+        "use": "@vercel/python"
+    }],
+    "routes": [
+        { "src": "(.*)", "dest": "server.py" }
+    ]
+}
