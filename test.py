@@ -1,5 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
+import pytz
 
-now = datetime.now()
+zones = pytz.all_timezones
 
-print(now.strftime("%H:%M"))
+print(zones)

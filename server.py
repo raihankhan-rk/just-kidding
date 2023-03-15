@@ -3,10 +3,12 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 from datetime import datetime, date
 from db.db import db
+import pytz
+
 
 app = Flask(__name__)
 cors = CORS(app)
-now = datetime.now()
+now = datetime.now(pytz.timezone("Asia/Calcutta"))
 today = date.today()
 
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -23,8 +25,8 @@ def home():
 def post_joke():
     try:
         data = request.json
-        data["time"] = datetime.now().strftime("%H:%M")
-        data["date"] = date.today().strftime("%d/%m/%Y")
+        data["time"] = now.strftime("%H:%M")
+        data["date"] = today.strftime("%d/%m/%Y")
         db.jokes.insert_one(parse_json(data))
         print(data)
         # return data
